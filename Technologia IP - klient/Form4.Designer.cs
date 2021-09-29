@@ -44,11 +44,12 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(187, 400);
+            this.button1.Location = new System.Drawing.Point(194, 393);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(93, 400);
+            this.button2.Location = new System.Drawing.Point(100, 393);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 23);
             this.button2.TabIndex = 1;
@@ -66,16 +67,17 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 371);
+            this.button3.Location = new System.Drawing.Point(19, 363);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Wycisz";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 400);
+            this.button4.Location = new System.Drawing.Point(19, 392);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
@@ -93,7 +95,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(139, 370);
+            this.button5.Location = new System.Drawing.Point(146, 363);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(123, 24);
             this.button5.TabIndex = 5;
@@ -184,11 +186,23 @@
             this.comboBox2.Size = new System.Drawing.Size(221, 21);
             this.comboBox2.TabIndex = 21;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(164, 285);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(80, 17);
+            this.checkBox2.TabIndex = 22;
+            this.checkBox2.Text = "Wyciszenie";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 435);
+            this.ClientSize = new System.Drawing.Size(286, 433);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox1);
@@ -230,5 +244,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

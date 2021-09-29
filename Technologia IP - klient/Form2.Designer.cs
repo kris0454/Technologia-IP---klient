@@ -43,7 +43,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(165, 384);
+            this.button1.Location = new System.Drawing.Point(171, 39);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -54,7 +54,7 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 33);
+            this.listView1.Location = new System.Drawing.Point(12, 82);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(309, 162);
             this.listView1.TabIndex = 1;
@@ -71,17 +71,18 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(246, 384);
+            this.button2.Location = new System.Drawing.Point(252, 39);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Wyjdź";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 198);
+            this.label2.Location = new System.Drawing.Point(18, 257);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 4;
@@ -90,7 +91,7 @@
             // listView2
             // 
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(12, 214);
+            this.listView2.Location = new System.Drawing.Point(12, 283);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(309, 163);
             this.listView2.TabIndex = 5;
@@ -99,7 +100,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 389);
+            this.label4.Location = new System.Drawing.Point(18, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 14;
@@ -107,7 +108,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(54, 386);
+            this.textBox2.Location = new System.Drawing.Point(60, 41);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 13;
@@ -139,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 417);
+            this.ClientSize = new System.Drawing.Size(330, 456);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);

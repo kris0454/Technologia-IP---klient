@@ -27,16 +27,61 @@ namespace Technologia_IP___klient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "")
+            if (textBox3.Text == "")
             {
                 MessageBox.Show("Brak adresu serwera");
             }
             else
             {
                 ip = textBox3.Text;
+                if (textBox1.Text != "")
+                {
+                    nick = textBox1.Text;
+                    if(textBox2.Text != "")
+                    {
+                        password = textBox2.Text;
+                        try
+                        {
+                            client = new TcpClient();
+                            client.Connect(ip, 8080);
+                            stream = client.GetStream();
+                            CommProtocol.init(stream);
+                            if (client.Connected)
+                            {
+                                sendKey(aes);
+                                InitializeComponent();
+                            }
+                        }
+                        catch( Exception ex)
+                        {
+                            MessageBox.Show("Couldn't connect to the server. Please try again.");
+                            this.Close();
+                        }
+                        write("log " + nick + " " + password);
+                        string msg = read();
+                        if(msg == "log ok")
+                        {
+                            this.Hide();
+                            Form1 form1 = new Form1(client, ip, nick, password);
 
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Brak wpisanego hasła");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Brak podanego nicku");
+                }
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

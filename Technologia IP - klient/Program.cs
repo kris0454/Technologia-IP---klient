@@ -15,7 +15,7 @@ namespace Technologia_IP___klient
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form4());
+                Application.Run(new Form2());
             }
             catch (Exception e)
             { MessageBox.Show("Something went wrong"); }
