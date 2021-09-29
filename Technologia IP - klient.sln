@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Technologia IP - klient", "Technologia IP - klient\Technologia IP - klient.csproj", "{FB0C5DC6-D334-4B50-9F21-EDA87B3093F0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "keys", "keys", "{81889EF5-BAA8-4604-A585-31C788CE8494}"
+	ProjectSection(SolutionItems) = preProject
+		Technologia IP - klient\bin\Debug\keys\priv.txt = Technologia IP - klient\bin\Debug\keys\priv.txt
+		Technologia IP - klient\bin\Debug\keys\pub.txt = Technologia IP - klient\bin\Debug\keys\pub.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
