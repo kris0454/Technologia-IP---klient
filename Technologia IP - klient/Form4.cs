@@ -21,12 +21,71 @@ public partial class Form4 : Form
         BufferedWaveProvider bufferedWaveProvider;
         SavingWaveProvider savingWaveProvider;
         WaveOut player;
-        public Form4()
+
+        public string RoomId;
+        private string nick;
+        private Form1 form1;
+        private string ip;
+        List<String> usernames = new List<String>();
+
+
+        public Form4(Form1 form1,string ip, string nick, string RoomId)
         {
+            this.RoomId = RoomId;
+            this.nick = nick;
+            this.form1 = form1;
+            this.ip = ip;
+            player = new WaveOut();
+            player.Init(savingWaveProvider);
+            player.Play();
             InitializeComponent();
             LoadDevices();
         }
-
+        private void Form4_Load(object sender, EventArgs e)
+        {
+            textBox3.Text = nick;
+            textBox2.Text = RoomId;
+            textBox1.Text = ip;
+            PullState();
+            timer.Start();
+        }
+        public void PullState()
+        {
+            string sData = CommProtocol.read();
+            if (sData == "")
+            {
+                timer.Stop();
+                MessageBox.Show("Connection error");
+                Application.Exit();
+            }
+            string[] logData = CommProtocol.CheckMessage(sData);
+            if (logData[0] == "pull")
+            {
+                for(int i = 2; i < Int32.Parse(logData[1]); i++)
+                {
+                    usernames.Add(logData[i]);
+                }
+            }
+            else MessageBox.Show("PullState error");
+            RefreshDisplay();
+        }
+        public void RefreshDisplay()
+        {
+            if (usernames.Count != 0)
+            {
+                table1.RowCount = usernames.Count;
+            }
+            for (int i = 0; i < usernames.Count; i++)
+            {
+                int j = 0;
+                table1.Rows[i].Cells[j++].Value = usernames[i];
+            }
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            CommProtocol.write("noop");
+            PullState();
+        }
         private void LoadDevices()
         {
            for (int deviceId = 0; deviceId < WaveIn.DeviceCount; deviceId++)
@@ -50,9 +109,7 @@ public partial class Form4 : Form
                 wave.DataAvailable += Wave_DataAvailable;
                 bufferedWaveProvider = new BufferedWaveProvider(wave.WaveFormat);
                 savingWaveProvider = new SavingWaveProvider(bufferedWaveProvider, "temp.wav");
-                player = new WaveOut();
-                player.Init(savingWaveProvider);
-                player.Play();
+                
                 wave.StartRecording();
 
             }
@@ -98,6 +155,14 @@ public partial class Form4 : Form
                 player.Play();
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+            CommProtocol.write("lrm");
+            this.Close();
+            form1.Show();
         }
     }
 }

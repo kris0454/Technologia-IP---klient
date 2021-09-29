@@ -57,18 +57,15 @@ namespace Technologia_IP___klient
                             MessageBox.Show("Couldn't connect to the server. Please try again.");
                             this.Close();
                         }
-                        write("log " + nick + " " + password);
+                        write("con " + nick);
                         string msg = read();
-                        if(msg == "log ok")
+                       
+                        if(msg == "con ok")
                         {
                             this.Hide();
-                            Form1 form1 = new Form1(client, ip, nick, password);
-
+                            Form1 form1 = new Form1(client, ip, nick);
+                            form1.ShowDialog();
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Brak wpisanego hasła");
                     }
                 }
                 else
