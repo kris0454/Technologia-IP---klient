@@ -18,7 +18,7 @@ namespace Technologia_IP___klient
                 Application.Run(new Form2());
             }
             catch (Exception e)
-            { MessageBox.Show("Something went wrong"); }
+            { MessageBox.Show(e.ToString()); }
         }
     }
 }

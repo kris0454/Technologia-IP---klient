@@ -98,6 +98,7 @@ namespace Technologia_IP___klient
                 sw.WriteLine(msg);
                 sw.WriteLine(msg2);
             }
+            read();
         }
         public static string read()
         {

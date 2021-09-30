@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.table1 = new System.Windows.Forms.DataGridView();
             this.Użytkownik = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,6 +208,11 @@
             this.Użytkownik.HeaderText = "Użytkownik";
             this.Użytkownik.Name = "Użytkownik";
             // 
+            // timer
+            // 
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +253,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
@@ -257,5 +263,6 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.DataGridView table1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Użytkownik;
+        private System.Windows.Forms.Timer timer1;
     }
 }

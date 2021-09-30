@@ -22,26 +22,29 @@ namespace Technologia_IP___klient
         public void refresh()
         {
             dataGridView1.Rows.Clear();
-
-            write("ref");
-            string[] data = CheckMessage(read());
-
-
-            int x = 0;
-            int numberOfRows = int.Parse(data[x++]);
-
-            if (numberOfRows != 0)
+            try
             {
-                this.dataGridView1.RowCount = numberOfRows;
-            }
+                write("ref");
+                string[] data = CheckMessage(read());
 
-            for (int i = 0; i < numberOfRows; i++)
-            {
-                for (int j = 0; j < 3; j++)
+
+                int x = 0;
+                int numberOfRows = int.Parse(data[x++]);
+
+                if (numberOfRows != 0)
                 {
-                    this.dataGridView1.Rows[i].Cells[j].Value = data[x++];
+                    this.dataGridView1.RowCount = numberOfRows;
+                }
+
+                for (int i = 0; i < numberOfRows; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        this.dataGridView1.Rows[i].Cells[j].Value = data[x++];
+                    }
                 }
             }
+            catch (Exception e) { }
         }
         public Form1(TcpClient Client, string ip, string nick)
         {
@@ -49,9 +52,10 @@ namespace Technologia_IP___klient
             stream = Client.GetStream();
             this.ip = ip;
             this.nick = nick;
+            InitializeComponent();
             textBox1.Text = ip;
             textBox3.Text = nick;
-            InitializeComponent();
+        
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -64,12 +68,18 @@ namespace Technologia_IP___klient
         }
         private void button1_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void ConnectButton_Click(object sender, EventArgs e)
+        {
             if (dataGridView1.SelectedCells.Count > 0)
             {
                 int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
                 DataGridViewRow selectedRow = dataGridView1.Rows[selectedrowindex];
                 string isPrivate = Convert.ToString(selectedRow.Cells[1].Value);
                 string cellValue = Convert.ToString(selectedRow.Cells["Id"].Value);
+                int udpPort = new Random().Next(9100, 9200);
                 if (cellValue != "")
                 {
                     if (isPrivate == "True")
@@ -84,12 +94,12 @@ namespace Technologia_IP___klient
                                 return;
                             }
                         }
-                        write("jrm " + cellValue + " " + nick + " " + content);
+                        write("jrm " + cellValue + " " + nick + " " + content+" "+udpPort);
                         string msg = CommProtocol.read();
                         if (msg == "ok")
                         {
                             this.Hide();
-                            Form4 form4 = new Form4(this,ip, nick, cellValue);
+                            Form4 form4 = new Form4(this, ip, nick, cellValue,udpPort);
                             form4.ShowDialog();
                         }
                         else if (msg == "error wrong_password")
@@ -103,13 +113,13 @@ namespace Technologia_IP___klient
                     }
                     else
                     {
-                        write("jrm " + cellValue + " " + nick + " ");
+                        write("jrm " + cellValue + " " + nick + " "+udpPort);
                         string msg = CommProtocol.read();
 
                         if (msg == "ok")
                         {
                             this.Hide();
-                            Form4 form4 = new Form4(this,ip,nick, cellValue);
+                            Form4 form4 = new Form4(this, ip, nick, cellValue,udpPort);
                             form4.ShowDialog();
                         }
                         else if (msg == "error full")
@@ -122,11 +132,6 @@ namespace Technologia_IP___klient
             }
         }
 
-        private void ConnectButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             refresh();
@@ -135,7 +140,7 @@ namespace Technologia_IP___klient
         private void EndConnectButton_Click(object sender, EventArgs e)
         {
             write("dsc");
-            Application.Exit();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
